@@ -38,3 +38,47 @@ The FC41D also supports BLE connectivity.  The AT commands for BLE are documente
 
 * **Quectel FC41D Wi‑Fi&Bluetooth Module AWS IoT Platform Access Guide**【966357325308740†L495-L529】.
 * **Quectel FC41D AT Commands Manual**【693478592633391†L6369-L6378】.
+
+## Why FC41D?
+
+The FC41D module is more than just a wireless transceiver – it contains its own microcontroller and offers a rich feature set that makes it an attractive choice for IoT products:
+
+* **Low‑power, cost‑effective MCU + wireless combo** – FC41D integrates a 120 MHz ARM core with 256 KB RAM and 2 MB/4 MB flash【1290545695481†L521-L548】.  This eliminates the need for a separate Wi‑Fi/Bluetooth chipset and reduces BOM cost.
+* **Dual wireless connectivity** – It supports both Wi‑Fi 4 (IEEE 802.11 b/g/n) and Bluetooth 5.2【1290545695481†L521-L548】【87468609204021†L28-L33】.  Wi‑Fi can operate in AP or STA mode【1290545695481†L592-L603】, while BLE makes it easy to add mobile phone provisioning or sensor networks.
+* **Compact form factor** – The module measures only 20 × 18 × 2.6 mm and weighs about 1.5 g【1290545695481†L546-L548】【87468609204021†L15-L17】, so it can be embedded into space‑constrained designs.
+* **Multiple interfaces** – FC41D exposes UART, SPI, I²C, ADC, PWM and up to 19 GPIOs【87468609204021†L18-L31】, giving you flexibility to connect sensors, actuators or a host MCU.
+* **Robust security and certifications** – The module supports WPA‑PSK/WPA2‑PSK/WPA3‑SAE Wi‑Fi encryption and can store TLS certificates for AWS IoT【87468609204021†L14-L22】.  It is certified for CE, FCC, IC, Anatel, RCM, KC and TELEC【87468609204021†L88-L97】, simplifying product compliance.
+* **Standard AT commands** – A simple AT command set allows any host microcontroller to control the module.  Quectel’s **QuecOpen** firmware also supports public cloud integrations【87468609204021†L23-L26】.
+
+## Advantages over using the ESP32’s built‑in Wi‑Fi/Bluetooth
+
+Using an external FC41D module instead of the ESP32’s native wireless stack offers several benefits:
+
+* **Offloaded networking** – The FC41D handles Wi‑Fi/BLE protocols internally, freeing the ESP32’s CPU to focus on application logic.  This can reduce code complexity and improve real‑time responsiveness.
+* **Pre‑certified radio** – Because the FC41D carries global certifications【87468609204021†L88-L97】, your end product can inherit these approvals without going through full radio testing, which can save time and cost.
+* **Flexible antenna options** – Depending on the order code you can choose a PCB antenna, IPEX connector or external ANT_WIFI/BT pin【1290545695481†L672-L675】【87468609204021†L32-L33】.  This lets you optimise range and mechanical integration.
+* **BLE 5.2 support** – Not all ESP32 variants support the latest BLE features.  FC41D provides Bluetooth 5.2 with GATT and BLE operation modes【1290545695481†L603-L608】.
+* **Wide operating temperature range** – The module operates from –40 °C to +85 °C【1290545695481†L632-L635】, making it suitable for industrial environments.
+
+## Documentation
+
+Quectel publishes comprehensive documents to help you integrate the FC41D:
+
+| Document | Description |
+|---|---|
+| **FC41D Wi‑Fi & Bluetooth Module Specification** | Summarises key features, electrical characteristics and certification information【87468609204021†L8-L23】【87468609204021†L88-L97】. |
+| **FC41D Hardware Design** | Provides detailed pinouts, power supply recommendations and PCB layout guidelines.  It includes the functional block diagram【1290545695481†L646-L668】 and reference circuits. |
+| **FC41D AWS IoT Platform Access Guide** | Describes how to connect the module to AWS IoT Core using AT commands【966357325308740†L495-L529】. |
+| **FC41D AT Commands Manual** | Lists all AT commands for Wi‑Fi, Bluetooth and peripheral interfaces【693478592633391†L6369-L6378】. |
+
+## Diagram and schematic
+
+The diagram below illustrates the high‑level architecture of this project.  An ESP32 development board reads a DHT11 sensor and communicates with the FC41D over a secondary UART.  The FC41D module then connects to AWS IoT Core via Wi‑Fi and publishes MQTT messages.  BLE functionality is available but unused here.
+
+![System overview diagram](diagram.png)
+
+For a visual reference of the module itself you can consult the FC41D datasheet or view the picture below:
+
+![Quectel FC41D module](fc41d.png)
+
+If you require a full schematic, please refer to the official hardware design document’s reference circuits【1290545695481†L646-L668】.  They show recommended power supply filtering, antenna matching and UART interface wiring.
